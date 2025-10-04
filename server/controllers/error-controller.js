@@ -12,4 +12,16 @@ module.exports = class ErrorController {
             res.status(500).json({ message: "Something went wrong" });
         }
     }
+
+    async removeError(req, res, next) {
+        try {
+            const { id } = req.params;
+            console.log("Removing error with ID:", id);
+            await errorService.removeError(id);
+            res.status(200).json({ message: "Error removed!" });
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({ message: "Something went wrong" });
+        }
+    }
 };

@@ -1,0 +1,18 @@
+const ProjectService = require("../services/project-service");
+const projectService = new ProjectService();
+const { v4: uuidv4 } = require("uuid");
+
+class ProjectController {
+    async createProject(req, res) {
+        try {
+            const { name, description, ownerId } = req.body;
+            const id = uuidv4();
+            await projectService.create(id, name, description, ownerId);
+            res.status(200).json({ message: "Project created!" });
+        } catch (error) {
+            res.status(500).json({ message: "Something went wrong" });
+        }
+    }
+}
+
+module.exports = ProjectController;

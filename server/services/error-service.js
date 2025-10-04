@@ -11,4 +11,8 @@ module.exports = class ErrorService {
         );
         console.log(result);
     }
+
+    async removeError(id) {
+        await db.query("DELETE FROM errors WHERE id = $1", [id]);
+    }
 };
