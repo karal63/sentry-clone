@@ -8,20 +8,27 @@ module.exports = class ErrorController {
             await errorService.addError(projectId, userId, error);
             res.status(200).json({ message: "Error added!" });
         } catch (error) {
-            console.log(error);
-            res.status(500).json({ message: "Something went wrong" });
+            next(error);
         }
     }
 
     async removeError(req, res, next) {
         try {
             const { id } = req.params;
-            console.log("Removing error with ID:", id);
             await errorService.removeError(id);
             res.status(200).json({ message: "Error removed!" });
         } catch (error) {
-            console.log(error);
-            res.status(500).json({ message: "Something went wrong" });
+            next(error);
+        }
+    }
+
+    async getErrors(req, res, next) {
+        try {
+            const { projectId } = req.params;
+            const errors = await errorService.getErrors(projectId);
+            res.status(200).json({ errors });
+        } catch (error) {
+            next(error);
         }
     }
 };
