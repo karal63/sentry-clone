@@ -29,3 +29,5 @@ INSERT INTO users (id, username, email, password_hash) VALUES ('0', 'root', 'kuz
 INSERT INTO projects (id, name, description, owner_id) VALUES ('0', 'Test Project', 'This is a test project', '0');  
 
 -- fix primary key violation
+
+DELETE FROM users WHERE id = "1a15c12b-3b63-4b9c-8b52-eee3db77f569" OR id = "0feb5eb5-ce50-47ae-97b5-ac98e4360d2a" OR id = "aae0f3b4-adbf-432a-aecd-4ae4f9192372";
