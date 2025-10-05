@@ -8,8 +8,7 @@ module.exports = class ErrorController {
             await errorService.addError(projectId, userId, error);
             res.status(200).json({ message: "Error added!" });
         } catch (error) {
-            console.log(error);
-            res.status(500).json({ message: "Something went wrong" });
+            next(error);
         }
     }
 
@@ -20,8 +19,7 @@ module.exports = class ErrorController {
             await errorService.removeError(id);
             res.status(200).json({ message: "Error removed!" });
         } catch (error) {
-            console.log(error);
-            res.status(500).json({ message: "Something went wrong" });
+            next(error);
         }
     }
 };

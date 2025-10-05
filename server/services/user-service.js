@@ -55,6 +55,21 @@ class UserService {
             user: readyUser,
         };
     }
+
+    async refresh(refreshToken) {
+        if (!refreshToken) throw ApiError.UnauthorizedError();
+        const userDto = token.validateRefreshToken(refreshToken);
+        if (!userDto) throw ApiError.UnauthorizedError();
+
+        const tokens = token.generateTokens(
+            userDto.id,
+            userDto.email,
+            userDto.name
+        );
+        return {
+            tokens,
+        };
+    }
 }
 
 module.exports = UserService;

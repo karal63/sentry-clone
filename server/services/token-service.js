@@ -17,6 +17,15 @@ class TokenService {
 
         return { accessToken, refreshToken };
     }
+
+    validateRefreshToken(token) {
+        try {
+            const userData = jwt.verify(token, process.env.REFRESH_TOKEN);
+            return userData;
+        } catch (error) {
+            return null;
+        }
+    }
 }
 
 module.exports = TokenService;
