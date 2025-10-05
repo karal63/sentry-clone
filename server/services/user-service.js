@@ -3,6 +3,7 @@ const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcrypt");
 
 const TokenService = require("./token-service");
+const ApiError = require("../exceptions/api-error");
 const token = new TokenService();
 
 class UserService {
@@ -12,7 +13,7 @@ class UserService {
             [email, name]
         );
         if (result.rows.length > 0) {
-            throw new Error("User already exists");
+            throw ApiError.BadRequest("User already exists");
         }
 
         const id = uuidv4();
@@ -29,7 +30,7 @@ class UserService {
             email,
         ]);
         if (result.rows.length === 0) {
-            throw new Error("User not found");
+            throw ApiError.BadRequest("User not found");
         }
 
         const user = result.rows[0];
@@ -38,7 +39,7 @@ class UserService {
             user.password_hash
         );
         if (!isPasswordValid) {
-            throw new Error("Invalid password or email");
+            throw ApiError.BadRequest("Invalid password or email");
         }
 
         const readyUser = {
@@ -47,7 +48,6 @@ class UserService {
             name: user.username,
         };
 
-        // generate tokens
         const tokens = token.generateTokens({ ...readyUser });
 
         return {
