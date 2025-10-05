@@ -14,4 +14,12 @@ module.exports = class ErrorService {
     async removeError(id) {
         await db.query("DELETE FROM errors WHERE id = $1", [id]);
     }
+
+    async getErrors(projectId) {
+        const result = await db.query(
+            "SELECT * FROM errors WHERE project_id = $1",
+            [projectId]
+        );
+        return result.rows;
+    }
 };
