@@ -3,10 +3,17 @@ import { AuthInput, Button } from "@/shared/ui";
 import RememberMe from "./RememberMe.vue";
 import { ref } from "vue";
 
+import { useLogin } from "../model/useLogin";
+const { login } = useLogin();
+
 const auth = ref({
     email: "",
     password: "",
 });
+
+const handleSubmit = async () => {
+    await login(auth.value);
+};
 </script>
 
 <template>
@@ -38,7 +45,7 @@ const auth = ref({
 
     <RememberMe />
 
-    <Button>Login</Button>
+    <Button @click="handleSubmit">Login</Button>
 
     <div class="mt-10 flex gap-2 items-center">
         <p class="text-secondary">New User?</p>

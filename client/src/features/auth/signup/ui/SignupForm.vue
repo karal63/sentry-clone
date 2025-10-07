@@ -2,11 +2,18 @@
 import { AuthInput, Button } from "@/shared/ui";
 import { ref } from "vue";
 
+import { useSignup } from "../model/useSignup";
+const { signup } = useSignup();
+
 const auth = ref({
     email: "",
     name: "",
     password: "",
 });
+
+const handleSubmit = async () => {
+    await signup(auth.value);
+};
 </script>
 
 <template>
@@ -43,7 +50,7 @@ const auth = ref({
         </div>
     </form>
 
-    <Button>Signup</Button>
+    <Button @click="handleSubmit">Signup</Button>
 
     <div class="mt-10 flex gap-2 items-center">
         <p class="text-secondary">Already have an account?</p>
