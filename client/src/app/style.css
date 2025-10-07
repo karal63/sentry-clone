@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+:root {
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    background-color: azure;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@theme {
+    --breakpoint-3xl: 120rem;
+
+    --color-red-50: #fff1f2;
+    --color-red-100: #ffe3e6;
+    --color-red-200: #ffccd4;
+    --color-red-300: #ffa1b0;
+    --color-red-400: #ff6d87;
+    --color-red-500: #f93a61;
+    --color-red-600: #e7174c;
+    --color-red-700: #d20e44;
+    --color-red-800: #a30e3c;
+    --color-red-900: #8b103a;
+    --color-red-950: #4e031a;
+
+    --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+    --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+
+    --color-mainDarkBg: #0e0e11;
+    --color-mainHoverDarkBg: #17171c;
+
+    --color-mainGray: #262629;
+    --color-mainHoverOnGray: rgba(74, 85, 101, 0.3);
+
+    --color-mainBorder: #242324;
+    --color-grayDull: #4a5565;
+    --color-secondary: #8b8b8b;
+    --shadow-mainShadow: 0 0 20px rgba(0, 0, 0, 0.3);
+
+    --color-box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
