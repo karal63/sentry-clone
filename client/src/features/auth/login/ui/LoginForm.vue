@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { AuthInput, Button } from "@/shared/ui";
 import RememberMe from "./RememberMe.vue";
+import { ref } from "vue";
+
+const auth = ref({
+    email: "",
+    password: "",
+});
 </script>
 
 <template>
@@ -13,12 +19,20 @@ import RememberMe from "./RememberMe.vue";
     <form class="flex flex-col gap-7">
         <div class="flex flex-col">
             <label class="mb-3 text-secondary">User Email</label>
-            <AuthInput type="email" placeholder="yourEmail@gmail.com (ex)" />
+            <AuthInput
+                type="email"
+                v-model="auth.email"
+                placeholder="yourEmail@gmail.com (ex)"
+            />
         </div>
 
         <div class="flex flex-col">
             <label class="mb-3 text-secondary">Password</label>
-            <AuthInput type="password" placeholder="*********" />
+            <AuthInput
+                type="password"
+                v-model="auth.password"
+                placeholder="*********"
+            />
         </div>
     </form>
 
