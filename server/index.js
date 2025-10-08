@@ -13,10 +13,10 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cookieParser());
 app.use(
-    cors({
-        origin: process.env.ORIGIN_URL,
-        credentials: true,
-    })
+  cors({
+    origin: process.env.ORIGIN_URL,
+    credentials: true,
+  })
 );
 app.use("/api", errorRoutes);
 app.use("/api", projectRouter);
@@ -25,5 +25,5 @@ app.use("/api", userRoutes);
 app.use(errorMiddleware);
 
 app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
+  console.log(`Server is running at http://localhost:${port}`);
 });
