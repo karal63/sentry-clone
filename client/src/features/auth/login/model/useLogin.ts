@@ -9,9 +9,8 @@ export const useLogin = () => {
             console.log(data);
         } catch (error) {
             if (error instanceof AxiosError) {
-                console.log(error.response?.data.message);
+                return error.response?.data.message;
             }
-            console.log(error);
         }
     };
 

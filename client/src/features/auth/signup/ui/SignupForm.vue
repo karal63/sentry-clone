@@ -3,6 +3,7 @@ import { AuthInput, Button } from "@/shared/ui";
 import { ref } from "vue";
 
 import { useSignup } from "../model/useSignup";
+import { Icon } from "@iconify/vue";
 const { signup } = useSignup();
 
 const auth = ref({
@@ -11,8 +12,14 @@ const auth = ref({
     password: "",
 });
 
+const authError = ref<string | null>(null);
+
 const handleSubmit = async () => {
-    await signup(auth.value);
+    const error = await signup(auth.value);
+    if (error) {
+        return (authError.value = error);
+    }
+    error.value = null;
 };
 </script>
 
@@ -51,6 +58,16 @@ const handleSubmit = async () => {
     </form>
 
     <Button @click="handleSubmit">Signup</Button>
+
+    <div
+        v-if="authError"
+        class="mt-3 py-1 px-2 border border-red-800 flex items-center gap-2 text-red-500 bg-gray-200"
+    >
+        <Icon icon="material-symbols:error-rounded" class="text-3xl" />
+        <p class="text-red-800">
+            {{ authError }}
+        </p>
+    </div>
 
     <div class="mt-10 flex gap-2 items-center">
         <p class="text-secondary">Already have an account?</p>

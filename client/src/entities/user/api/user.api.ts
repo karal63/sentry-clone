@@ -2,7 +2,16 @@ import { axiosInstance } from "@/shared/config";
 import type { LoginPayload, SignupPayload } from "../model/user.model";
 
 export const apiSignup = async ({ email, name, password }: SignupPayload) => {
-    console.log("api call", email, name, password);
+    const res = await axiosInstance.post(
+        `${import.meta.env.VITE_API_URL}/signup`,
+        {
+            email,
+            name,
+            password,
+        }
+    );
+
+    return res;
 };
 
 export const apiLogin = async ({ email, password }: LoginPayload) => {
@@ -13,8 +22,6 @@ export const apiLogin = async ({ email, password }: LoginPayload) => {
             password,
         }
     );
-
-    console.log(res);
 
     return res;
 };
