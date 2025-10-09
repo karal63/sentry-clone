@@ -14,12 +14,16 @@ const auth = ref({
 
 const authError = ref<string | null>(null);
 
+const isLoading = ref(false);
+
 const handleSubmit = async () => {
+    isLoading.value = true;
     const error = await signup(auth.value);
     if (error) {
-        return (authError.value = error);
+        authError.value = error;
     }
-    error.value = null;
+    authError.value = null;
+    isLoading.value = false;
 };
 </script>
 
@@ -57,7 +61,10 @@ const handleSubmit = async () => {
         </div>
     </form>
 
-    <Button @click="handleSubmit">Signup</Button>
+    <Button @click="handleSubmit" :disabled="isLoading"
+        ><Icon v-if="isLoading" icon="line-md:loading-twotone-loop" />
+        <p v-else>Signup</p></Button
+    >
 
     <div
         v-if="authError"
@@ -71,8 +78,8 @@ const handleSubmit = async () => {
 
     <div class="mt-10 flex gap-2 items-center">
         <p class="text-secondary">Already have an account?</p>
-        <RouterLink to="/login" class="text-red-600 font-semibold"
-            >Login
+        <RouterLink to="/login" class="text-red-600 font-semibold">
+            Login
         </RouterLink>
     </div>
 </template>

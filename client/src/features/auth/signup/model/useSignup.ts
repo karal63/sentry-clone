@@ -3,9 +3,9 @@ import { apiSignup } from "@/entities/user";
 import { AxiosError } from "axios";
 import { useRouter } from "vue-router";
 
-const router = useRouter();
-
 export const useSignup = () => {
+    const router = useRouter();
+
     const signup = async (auth: SignupPayload) => {
         try {
             await apiSignup(auth);

@@ -5,8 +5,9 @@ import { AxiosError } from "axios";
 export const useLogin = () => {
     const login = async (auth: LoginPayload) => {
         try {
-            const data = await apiLogin(auth);
-            console.log(data);
+            const res = await apiLogin(auth);
+            localStorage.setItem("accessToken", res.data.accessToken);
+            console.log(res.data.accessToken);
         } catch (error) {
             if (error instanceof AxiosError) {
                 return error.response?.data.message;

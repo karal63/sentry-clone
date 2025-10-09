@@ -14,12 +14,17 @@ const auth = ref({
 
 const authError = ref<string | null>(null);
 
+const isLoading = ref(false);
+
 const handleSubmit = async () => {
+    isLoading.value = true;
     const error = await login(auth.value);
     if (error) {
-        return (authError.value = error);
+        authError.value = error;
+    } else {
+        authError.value = null;
     }
-    error.value = null;
+    isLoading.value = false;
 };
 </script>
 
@@ -52,7 +57,10 @@ const handleSubmit = async () => {
 
     <RememberMe />
 
-    <Button @click="handleSubmit">Login</Button>
+    <Button @click="handleSubmit" :disabled="isLoading">
+        <Icon v-if="isLoading" icon="line-md:loading-twotone-loop" />
+        <p v-else>Login</p></Button
+    >
 
     <div
         v-if="authError"
