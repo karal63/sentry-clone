@@ -36,6 +36,7 @@ axiosInstance.interceptors.response.use(
                 console.log(err);
             }
         }
+        throw error;
     }
 );
 // create interceptor and export axxios instance then use in api requests
