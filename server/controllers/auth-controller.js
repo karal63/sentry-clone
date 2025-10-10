@@ -30,7 +30,6 @@ class AuthController {
             }
             const { email, password } = req.body;
             const userData = await userService.login(email, password);
-            console.log(email, password);
 
             const { tokens, user } = userData;
 
@@ -67,7 +66,10 @@ class AuthController {
                 httpOnly: true,
             });
 
-            res.status(200).json({ accessToken: userData.tokens.accessToken });
+            res.status(200).json({
+                accessToken: userData.tokens.accessToken,
+                user: userData.user,
+            });
         } catch (error) {
             next(error);
         }

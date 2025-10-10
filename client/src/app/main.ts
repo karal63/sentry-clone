@@ -5,15 +5,23 @@ import appRouter from "./router";
 import { createPinia } from "pinia";
 import { useAuthStore } from "@/entities/user";
 
-const pinia = createPinia();
-const app = createApp(App);
-
-app.use(appRouter);
-app.use(pinia);
-
-appRouter.beforeEach((to) => {
+const bootstrap = async () => {
+    const pinia = createPinia();
+    const app = createApp(App);
     const authStore = useAuthStore(pinia);
-    if (to.meta.requiresAuth && !authStore.isAuthenticated) return "/login";
-});
 
-app.mount("#app");
+    app.use(appRouter);
+    app.use(pinia);
+
+    if (localStorage.getItem("accessToken")) {
+        await authStore.checkAuth();
+    }
+
+    appRouter.beforeEach((to) => {
+        if (to.meta.requiresAuth && !authStore.isAuthenticated) return "/login";
+    });
+
+    app.mount("#app");
+};
+
+bootstrap();
