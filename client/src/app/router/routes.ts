@@ -3,6 +3,7 @@ import type { RouteRecordRaw } from "vue-router";
 // components
 import AuthPage from "@/pages/auth/AuthPage.vue";
 import LandingPage from "@/pages/landing/LandingPage.vue";
+import { DashboardPage } from "@/pages/dashboard";
 
 export const routes: RouteRecordRaw[] = [
     {
@@ -22,5 +23,10 @@ export const routes: RouteRecordRaw[] = [
         props: {
             type: "signup",
         },
+    },
+    {
+        path: "/dashboard",
+        component: DashboardPage,
+        meta: { requiresAuth: true },
     },
 ];

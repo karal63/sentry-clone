@@ -18,9 +18,9 @@ class TokenService {
         return { accessToken, refreshToken };
     }
 
-    validateRefreshToken(token) {
+    async validateRefreshToken(token) {
         try {
-            const userData = jwt.verify(token, process.env.REFRESH_TOKEN);
+            const userData = await jwt.verify(token, process.env.REFRESH_TOKEN);
             return userData;
         } catch (error) {
             return null;

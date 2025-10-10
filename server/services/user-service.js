@@ -48,7 +48,11 @@ class UserService {
             name: user.username,
         };
 
-        const tokens = token.generateTokens({ ...readyUser });
+        const tokens = token.generateTokens(
+            readyUser.id,
+            readyUser.email,
+            readyUser.name
+        );
 
         return {
             tokens,
@@ -58,7 +62,7 @@ class UserService {
 
     async refresh(refreshToken) {
         if (!refreshToken) throw ApiError.UnauthorizedError();
-        const userDto = token.validateRefreshToken(refreshToken);
+        const userDto = await token.validateRefreshToken(refreshToken);
         if (!userDto) throw ApiError.UnauthorizedError();
 
         const tokens = token.generateTokens(
@@ -66,8 +70,18 @@ class UserService {
             userDto.email,
             userDto.name
         );
+
+        const result = await db.query(
+            "SELECT id, username, email FROM users WHERE id = $1",
+            [userDto.id]
+        );
+        if (result.rows.length === 0) {
+            throw ApiError.BadRequest("User not found");
+        }
+
         return {
             tokens,
+            user: result.rows[0],
         };
     }
 }

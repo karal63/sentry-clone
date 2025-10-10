@@ -1,5 +1,6 @@
 const { validationResult } = require("express-validator");
 const UserService = require("../services/user-service");
+const ApiError = require("../exceptions/api-error");
 const userService = new UserService();
 
 class AuthController {
@@ -25,10 +26,7 @@ class AuthController {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                return res.status(400).json({
-                    message: "Validation error",
-                    errors: errors.array(),
-                });
+                return next(ApiError.BadRequest("Validation error."));
             }
             const { email, password } = req.body;
             const userData = await userService.login(email, password);
@@ -45,6 +43,7 @@ class AuthController {
                 user,
             });
         } catch (error) {
+            res.status(500).json({ message: error.message });
             next(error);
         }
     }
@@ -67,7 +66,10 @@ class AuthController {
                 httpOnly: true,
             });
 
-            res.status(200).json({ accessToken: userData.tokens.accessToken });
+            res.status(200).json({
+                accessToken: userData.tokens.accessToken,
+                user: userData.user,
+            });
         } catch (error) {
             next(error);
         }

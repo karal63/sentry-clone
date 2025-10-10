@@ -7,7 +7,7 @@ defineEmits<{
 <template>
     <button
         @click="$emit('click')"
-        class="mt-8 bg-red-500 text-white w-full py-4 rounded-md font-bold hover:bg-red-600 transition cursor-pointer"
+        class="mt-8 bg-red-500 flex-center text-white w-full py-4 rounded-md font-bold hover:bg-red-600 disabled:bg-red-800 transition cursor-pointer"
     >
         <slot />
     </button>
