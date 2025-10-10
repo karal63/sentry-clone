@@ -1,5 +1,5 @@
 import { axiosInstance } from "@/shared/config";
-import type { LoginPayload, SignupPayload } from "../model/user.model";
+import type { LoginPayload, SignupPayload } from "../model/types";
 
 export const apiSignup = async ({ email, name, password }: SignupPayload) => {
     const res = await axiosInstance.post(
