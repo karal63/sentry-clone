@@ -1,8 +1,5 @@
-<script setup lang="ts">
-import { Sidebar } from "@/widgets/sidebar";
-</script>
+<script setup lang="ts"></script>
 
 <template>
-    <Sidebar />
     <router-view />
 </template>

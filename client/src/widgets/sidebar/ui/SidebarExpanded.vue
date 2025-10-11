@@ -8,7 +8,7 @@ const sidebar = useSidebarStore();
 
 <template>
     <div
-        class="relative z-0 transform border-r border-gray-300 shadow-lg px-3 py-5 transition-all w-[200px]"
+        class="bg-mainBg relative z-0 transform border-r border-gray-300 shadow-lg px-3 py-5 transition-all w-[200px]"
         :class="sidebar.isExpanded ? 'translate-x-0' : '-translate-x-full'"
     >
         <div class="flex justify-between items-center mb-4">
