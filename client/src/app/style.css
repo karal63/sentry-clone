@@ -5,7 +5,7 @@
     line-height: 1.5;
     font-weight: 400;
 
-    background-color: azure;
+    background-color: #f0ffff;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -31,7 +31,7 @@
     --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
     --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
 
-    --color-mainDarkBg: #0e0e11;
+    --color-mainBg: #f0ffff;
     --color-mainHoverDarkBg: #17171c;
 
     --color-mainGray: #262629;
