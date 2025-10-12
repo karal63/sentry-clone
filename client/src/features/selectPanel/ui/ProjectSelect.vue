@@ -1,16 +1,21 @@
 <script setup lang="ts">
-import { useProject, type Project } from "@/entities/project";
+import { useProject, useProjectStore, type Project } from "@/entities/project";
 import { onMounted, ref } from "vue";
 
 const project = useProject();
+const projectStore = useProjectStore();
 
 const isDropdownOpen = ref(false);
-const selectedProject = ref<Project | null>(null);
 const projects = ref<Project[]>([]);
 
 onMounted(async () => {
     projects.value = await project.getProjects();
 });
+
+const selectProject = (project: Project) => {
+    projectStore.setCurrentProject(project);
+    isDropdownOpen.value = false;
+};
 </script>
 
 <template>
@@ -19,7 +24,11 @@ onMounted(async () => {
             @click="isDropdownOpen = !isDropdownOpen"
             class="py-1 px-2 cursor-pointer"
         >
-            {{ selectedProject ? selectedProject.name : "Select Project" }}
+            {{
+                projectStore.currentProject
+                    ? projectStore.currentProject.name
+                    : "Select Project"
+            }}
         </button>
 
         <div
@@ -48,7 +57,7 @@ onMounted(async () => {
             <ul class="mt-1">
                 <li v-for="project in projects">
                     <button
-                        @click="selectedProject = project"
+                        @click="selectProject(project)"
                         class="hover:bg-gray-200 w-full text-left px-2 py-1 rounded cursor-pointer"
                     >
                         {{ project.name }}
