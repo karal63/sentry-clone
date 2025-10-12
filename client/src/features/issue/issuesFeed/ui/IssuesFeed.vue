@@ -2,6 +2,7 @@
 import { useIssueStore } from "@/entities/issue";
 import { useProjectStore } from "@/entities/project";
 import { watch } from "vue";
+import Issue from "./Issue.vue";
 
 const projectStore = useProjectStore();
 const issuesStore = useIssueStore();
@@ -18,9 +19,13 @@ watch(
 </script>
 
 <template>
-    <div class="border">
-        <ul>
-            <li v-for="issue in issuesStore.issues">{{ issue.message }}</li>
+    <div class="border border-gray-300 mt-5 rounded-md">
+        <ul class="flex flex-col gap-2 divide-y divide-gray-200">
+            <Issue
+                v-for="issue in issuesStore.issues"
+                :key="issue.id"
+                :issue="issue"
+            />
         </ul>
     </div>
 </template>

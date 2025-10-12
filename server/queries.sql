@@ -47,5 +47,5 @@ CREATE TABLE issues (
     -- updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
     INSERT INTO issues (id, project_id, title, culprit, level, type, message) VALUES (
-        'testid', '1', 'Test error', 'features/test.ts', 'error', 'TestError', 'db is not defined'
-    )
+        'testid2', '1', 'Example name (optional)', 'addPhoto(src/components/photo/PhotoForm)', 'error', 'TypeError', 'Failed to execute "readAsDataURL" on "FileReader": parameter 1 is not of type "Blob".'
+    );

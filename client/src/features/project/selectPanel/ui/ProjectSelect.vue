@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useProject, useProjectStore, type Project } from "@/entities/project";
+import { Icon } from "@iconify/vue";
 import { onMounted, ref } from "vue";
 
 const project = useProject();
@@ -27,13 +28,17 @@ const selectProject = (project: Project) => {
     <div class="relative">
         <button
             @click="isDropdownOpen = !isDropdownOpen"
-            class="py-1 px-2 cursor-pointer"
+            class="py-1 px-2 cursor-pointer flex items-center gap-2"
         >
             {{
                 projectStore.currentProject
                     ? projectStore.currentProject.name
                     : "Select Project"
             }}
+            <Icon
+                icon="weui:arrow-outlined"
+                class="text-xl transform rotate-90"
+            />
         </button>
 
         <div
@@ -72,8 +77,3 @@ const selectProject = (project: Project) => {
         </div>
     </div>
 </template>
-
-<!-- <Icon
-                    icon="weui:arrow-outlined"
-                    class="text-xl transform rotate-90"
-                /> -->

@@ -5,7 +5,7 @@ import { Sidebar } from "@/widgets/sidebar";
 <template>
     <div class="min-h-screen flex flex-col">
         <Sidebar />
-        <div class="flex-1 ml-29">
+        <div class="flex-1 ml-18 px-11">
             <router-view />
         </div>
     </div>
