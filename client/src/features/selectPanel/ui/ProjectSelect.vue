@@ -9,6 +9,11 @@ const isDropdownOpen = ref(false);
 const projects = ref<Project[]>([]);
 
 onMounted(async () => {
+    if (localStorage.getItem("currentProject")) {
+        projectStore.setCurrentProject(
+            JSON.parse(localStorage.getItem("currentProject")!)
+        );
+    }
     projects.value = await project.getProjects();
 });
 
