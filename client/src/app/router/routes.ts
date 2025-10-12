@@ -4,6 +4,7 @@ import type { RouteRecordRaw } from "vue-router";
 import AuthPage from "@/pages/auth/AuthPage.vue";
 import LandingPage from "@/pages/landing/LandingPage.vue";
 import { DashboardPage } from "@/pages/dashboard";
+import { IssuesPage } from "@/pages/issues";
 import ProtectedLayout from "../layout/ProtectedLayout.vue";
 
 export const routes: RouteRecordRaw[] = [
@@ -32,6 +33,11 @@ export const routes: RouteRecordRaw[] = [
             {
                 path: "/dashboard",
                 component: DashboardPage,
+                meta: { requiresAuth: true },
+            },
+            {
+                path: "/issues",
+                component: IssuesPage,
                 meta: { requiresAuth: true },
             },
         ],
