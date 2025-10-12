@@ -1,5 +1,5 @@
 const express = require("express");
-const errorRoutes = require("./routes/error");
+const issueRoutes = require("./routes/issue");
 const projectRouter = require("./routes/project");
 const userRoutes = require("./routes/user");
 const errorMiddleware = require("./middlewares/error-middleware");
@@ -18,7 +18,7 @@ app.use(
         credentials: true,
     })
 );
-app.use("/api", errorRoutes);
+app.use("/api", issueRoutes);
 app.use("/api", projectRouter);
 app.use("/api", userRoutes);
 

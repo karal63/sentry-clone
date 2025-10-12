@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { SelectPanel } from "@/features/selectPanel";
+import { IssuesFeed } from "@/features/issue/issuesFeed";
+import { SelectPanel } from "@/features/project/selectPanel";
 </script>
 
 <template>
@@ -8,6 +9,5 @@ import { SelectPanel } from "@/features/selectPanel";
     </div>
 
     <SelectPanel />
-
-    <!-- issues list -->
+    <IssuesFeed />
 </template>
