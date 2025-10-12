@@ -1,18 +1,16 @@
 <script setup lang="ts">
+import { useProject, type Project } from "@/entities/project";
 import { onMounted, ref } from "vue";
 
+const project = useProject();
+
 const isDropdownOpen = ref(false);
-const selectedProject = ref(null);
+const selectedProject = ref<Project | null>(null);
+const projects = ref<Project[]>([]);
 
-onMounted(() => {
-    console.log("fetch projects");
+onMounted(async () => {
+    projects.value = await project.getProjects();
 });
-
-const projects = ref([
-    { id: 1, name: "Project 1" },
-    { id: 2, name: "Project 2" },
-    { id: 3, name: "Project 3" },
-]);
 </script>
 
 <template>
