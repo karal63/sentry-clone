@@ -1,21 +1,28 @@
 <script setup lang="ts">
-import { useProject, useProjectStore, type Project } from "@/entities/project";
+import { useProjectStore, type Project } from "@/entities/project";
 import { Icon } from "@iconify/vue";
 import { onMounted, ref } from "vue";
 
-const project = useProject();
 const projectStore = useProjectStore();
 
 const isDropdownOpen = ref(false);
-const projects = ref<Project[]>([]);
 
 onMounted(async () => {
-    if (localStorage.getItem("currentProject")) {
+    if (
+        !projectStore.currentProject &&
+        localStorage.getItem("currentProject")
+    ) {
+        console.log("API call | issues");
         projectStore.setCurrentProject(
             JSON.parse(localStorage.getItem("currentProject")!)
         );
     }
-    projects.value = await project.getProjects();
+
+    // prevents from multiple calls
+    if (projectStore.projects.length > 0) return;
+    console.log("API call | projects");
+    const projects = await projectStore.getProjects();
+    projectStore.setProject(projects);
 });
 
 const selectProject = (project: Project) => {
@@ -65,7 +72,7 @@ const selectProject = (project: Project) => {
             </div>
 
             <ul class="mt-1">
-                <li v-for="project in projects">
+                <li v-for="project in projectStore.projects">
                     <button
                         @click="selectProject(project)"
                         class="hover:bg-gray-200 w-full text-left px-2 py-1 rounded cursor-pointer"
