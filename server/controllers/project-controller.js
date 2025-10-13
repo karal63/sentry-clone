@@ -3,6 +3,16 @@ const projectService = new ProjectService();
 const { v4: uuidv4 } = require("uuid");
 
 class ProjectController {
+    async getProject(req, res, next) {
+        console.log(req.user.id);
+        try {
+            const projects = await projectService.getAll(req.user.id);
+            res.status(200).json(projects);
+        } catch (error) {
+            next(error);
+        }
+    }
+
     async createProject(req, res) {
         try {
             const { name, description, ownerId } = req.body;

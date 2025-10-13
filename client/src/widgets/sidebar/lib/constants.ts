@@ -24,4 +24,12 @@ export const SIDEBAR_LINKS: SidebarLink[] = [
         to: "/projects",
         sublinks: [{ name: "All", to: "/projects", type: "single" }],
     },
+
+    {
+        id: 3,
+        name: "Dashboard",
+        icon: "mage:dashboard-3",
+        to: "/dashboard",
+        sublinks: [],
+    },
 ];

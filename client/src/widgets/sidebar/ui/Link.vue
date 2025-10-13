@@ -13,7 +13,6 @@ const props = defineProps<{
 }>();
 
 const isHovering = ref(false);
-console.log(props.link.to);
 
 const hoverLink = () => {
     sidebar.setSelectedLink(props.link);

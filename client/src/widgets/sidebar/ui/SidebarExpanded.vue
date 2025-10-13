@@ -8,8 +8,8 @@ const sidebar = useSidebarStore();
 
 <template>
     <div
-        class="bg-mainBg relative z-0 transform border-r border-gray-300 shadow-lg px-3 py-5 transition-all w-[200px]"
-        :class="sidebar.isExpanded ? 'translate-x-0' : '-translate-x-full'"
+        class="bg-mainBg absolute h-full z-0 transform border-r border-gray-300 shadow-lg px-3 py-5 transition-all w-[200px]"
+        :class="sidebar.isExpanded ? 'left-full' : '-left-[200%]'"
     >
         <div class="flex justify-between items-center mb-4">
             <h3 class="text-xl font-bold">{{ sidebar.selectedLink?.name }}</h3>

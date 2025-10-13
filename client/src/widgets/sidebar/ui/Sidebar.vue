@@ -9,7 +9,7 @@ const sidebar = useSidebarStore();
 <template>
     <div
         @mouseleave="sidebar.setSidebar(false)"
-        class="absolute left-0 top-0 h-full flex"
+        class="absolute z-10 left-0 top-0 h-full flex"
     >
         <SidebarSmall />
         <SidebarExpanded />
