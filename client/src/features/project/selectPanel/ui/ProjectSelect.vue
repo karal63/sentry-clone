@@ -17,12 +17,6 @@ onMounted(async () => {
             JSON.parse(localStorage.getItem("currentProject")!)
         );
     }
-
-    // prevents from multiple calls
-    if (projectStore.projects.length > 0) return;
-    console.log("API call | projects");
-    const projects = await projectStore.getProjects();
-    projectStore.setProject(projects);
 });
 
 const selectProject = (project: Project) => {

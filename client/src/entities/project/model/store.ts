@@ -19,7 +19,7 @@ export const useProjectStore = defineStore("project", () => {
         return res.data;
     };
 
-    const setProject = (newProjects: Project[]) => {
+    const setProjects = (newProjects: Project[]) => {
         projects.value = newProjects;
     };
 
@@ -28,6 +28,6 @@ export const useProjectStore = defineStore("project", () => {
         currentProject,
         setCurrentProject,
         getProjects,
-        setProject,
+        setProjects,
     };
 });
