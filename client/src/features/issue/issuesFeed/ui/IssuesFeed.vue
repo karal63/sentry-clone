@@ -10,11 +10,11 @@ const issuesStore = useIssueStore();
 watch(
     () => projectStore.currentProject,
     async () => {
-        console.log("current project changed");
         if (projectStore.currentProject) {
             await issuesStore.getIssues(projectStore.currentProject.id);
         }
-    }
+    },
+    { immediate: true }
 );
 </script>
 

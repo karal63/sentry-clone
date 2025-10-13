@@ -12,6 +12,7 @@ export const useIssueStore = defineStore("issue", () => {
 
     const getIssues = async (projectId: string) => {
         const res = await apiGetIssues(projectId);
+        console.log(res);
         issues.value = res.data;
     };
 
