@@ -7,8 +7,9 @@ const verifyToken = require("../middlewares/verify-token");
 router.get("/project", verifyToken, (req, res, next) =>
     projectController.getProject(req, res, next)
 );
-router.post("/project", (req, res) =>
-    projectController.createProject(req, res)
+
+router.post("/project", verifyToken, (req, res, next) =>
+    projectController.createProject(req, res, next)
 );
 
 module.exports = router;

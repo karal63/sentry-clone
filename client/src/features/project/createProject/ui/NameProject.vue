@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { SmallButton } from "@/shared/ui";
+import { useCreateProjectStore } from "../model/store";
+
+const createProjectStore = useCreateProjectStore();
 </script>
 
 <template>
@@ -12,20 +15,25 @@ import { SmallButton } from "@/shared/ui";
         <h3 class="text-xl">Name your project</h3>
     </div>
 
-    <form class="flex gap-7">
+    <div class="flex gap-7">
         <label class="flex flex-col gap-3 mt-5">
             <p class="text-lg">Project slug</p>
             <input
                 type="text"
+                v-model="createProjectStore.project.name"
                 placeholder="project-slug"
                 class="border border-gray-300 rounded-md px-3 h-10 w-[300px]"
             />
         </label>
 
         <div class="flex items-end">
-            <SmallButton color="purple" class="h-10">
+            <SmallButton
+                @click="createProjectStore.create"
+                color="purple"
+                class="h-10"
+            >
                 Create Project
             </SmallButton>
         </div>
-    </form>
+    </div>
 </template>

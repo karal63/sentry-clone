@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { SmallButton } from "@/shared/ui";
+import { useCreateProjectStore } from "../model/store";
+
+const createProjectStore = useCreateProjectStore();
 </script>
 
 <template>
@@ -13,7 +16,10 @@ import { SmallButton } from "@/shared/ui";
     </div>
 
     <label class="flex gap-2 my-10">
-        <input type="checkbox" />
+        <input
+            type="checkbox"
+            v-model="createProjectStore.project.notifyViaEmail"
+        />
         Notify via email
     </label>
 

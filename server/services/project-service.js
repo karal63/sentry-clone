@@ -9,11 +9,12 @@ class ProjectService {
         return res.rows;
     }
 
-    async create(id, name, description, userId) {
-        await db.query(
-            "INSERT INTO projects (id, name, description, owner_id) VALUES ($1, $2, $3, $4) RETURNING *",
-            [id, name, description, userId]
+    async create(id, name, platform, notifyViaEmail, ownerId) {
+        const res = await db.query(
+            "INSERT INTO projects (id, name, platform, notifyViaEmail, owner_id) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+            [id, name, platform, notifyViaEmail, ownerId]
         );
+        return res.rows[0];
     }
 
     async deleteProject(id) {
