@@ -23,6 +23,7 @@ export const useCreateProjectStore = defineStore("createProject", () => {
             const newProject = await apiCreateProject(project.value);
             projectStore.projects.push(newProject);
             router.push(`/projects/${newProject.name}/getting-started`);
+            router.push(`/projects/vue-project/getting-started`);
         } catch (error) {
             console.log(error);
         }
