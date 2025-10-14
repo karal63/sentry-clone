@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PlatformsList from "./PlatformsList.vue";
+import PlatformsList from "../../createProject/ui/PlatformsList.vue";
 </script>
 
 <template>

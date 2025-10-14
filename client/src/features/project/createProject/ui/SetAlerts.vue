@@ -12,12 +12,12 @@ import { SmallButton } from "@/shared/ui";
         <h3 class="text-lg">Alerts</h3>
     </div>
 
-    <label class="flex gap-2 mt-5">
+    <label class="flex gap-2 my-10">
         <input type="checkbox" />
         Notify via email
     </label>
 
-    <SmallButton color="transparent" class="my-5 border border-gray-300">
+    <SmallButton color="transparent" class="border border-gray-300">
         Connect to messaging
     </SmallButton>
 </template>
