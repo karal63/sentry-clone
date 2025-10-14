@@ -8,10 +8,12 @@ import { Icon } from "@iconify/vue";
     <div class="my-5 flex justify-between items-center">
         <h1 class="text-3xl font-bold">Projects</h1>
 
-        <SmallButton class="flex gap-1 items-center"
-            ><Icon icon="ic:round-plus" class="text-xl" />Create
-            Project</SmallButton
-        >
+        <RouterLink to="/projects/new">
+            <SmallButton class="flex gap-1 items-center"
+                ><Icon icon="ic:round-plus" class="text-xl" />Create
+                Project</SmallButton
+            >
+        </RouterLink>
     </div>
 
     <ProjectsFeed />
