@@ -3,7 +3,7 @@ import vue from "@/shared/assets/vue.png";
 </script>
 
 <template>
-    <div class="grid grid-cols-14 mt-10">
+    <div class="grid grid-cols-14 my-10">
         <div
             class="w-full hover:bg-gray-100 px-8 py-3 rounded-md cursor-pointer transition"
         >

@@ -2,12 +2,20 @@
 defineEmits<{
     (e: "click"): void;
 }>();
+
+defineProps<{
+    color?: string;
+}>();
 </script>
 
 <template>
     <button
         @click="$emit('click')"
-        class="bg-red-700 flex-center text-white py-1 px-3 rounded-md font-semibold hover:bg-red-800 transition cursor-pointer"
+        class="flex-center py-1 px-3 rounded-md font-semibold transition cursor-pointer"
+        :style="{
+            backgroundColor: color ? color : 'red',
+            color: color === 'transparent' ? 'black' : 'white',
+        }"
     >
         <slot />
     </button>

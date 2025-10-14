@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { SelectPlatform } from "@/features/project/selectPlatform";
+import { SetAlerts } from "@/features/project/setAlerts";
 </script>
 
 <template>
@@ -8,4 +9,5 @@ import { SelectPlatform } from "@/features/project/selectPlatform";
     </div>
 
     <SelectPlatform />
+    <SetAlerts />
 </template>
