@@ -13,14 +13,20 @@ class ProjectController {
         }
     }
 
-    async createProject(req, res) {
+    async createProject(req, res, next) {
         try {
-            const { name, description, ownerId } = req.body;
+            const { platform, notifyViaEmail, name } = req.body;
             const id = uuidv4();
-            await projectService.create(id, name, description, ownerId);
-            res.status(200).json({ projectId: id });
+            const newProject = await projectService.create(
+                id,
+                name,
+                platform,
+                notifyViaEmail,
+                req.user.id
+            );
+            res.status(200).json(newProject);
         } catch (error) {
-            res.status(500).json({ message: "Something went wrong" });
+            next(error);
         }
     }
 }

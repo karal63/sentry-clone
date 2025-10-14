@@ -6,6 +6,7 @@ import LandingPage from "@/pages/landing/LandingPage.vue";
 import { DashboardPage } from "@/pages/dashboard";
 import { IssuesPage } from "@/pages/issues";
 import ProtectedLayout from "../layout/ProtectedLayout.vue";
+import { CreateProjectPage, ProjectsPage } from "@/pages/projects";
 
 export const routes: RouteRecordRaw[] = [
     {
@@ -38,6 +39,16 @@ export const routes: RouteRecordRaw[] = [
             {
                 path: "/issues",
                 component: IssuesPage,
+                meta: { requiresAuth: true },
+            },
+            {
+                path: "/projects",
+                component: ProjectsPage,
+                meta: { requiresAuth: true },
+            },
+            {
+                path: "/projects/new",
+                component: CreateProjectPage,
                 meta: { requiresAuth: true },
             },
         ],

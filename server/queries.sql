@@ -16,7 +16,7 @@ create table projects (
 );
 
 INSERT INTO users (id, username, email, password_hash) VALUES ('0', 'root', 'kuzmichleva1@gmail.com', '1234');  
-INSERT INTO projects (id, name, description, owner_id) VALUES ('0', 'Test Project', 'This is a test project', '0');  
+INSERT INTO projects (id, name, platform, owner_id) VALUES ('0', 'Test Project', 'VUE', '0');  
 
 -- fix primary key violation
 
