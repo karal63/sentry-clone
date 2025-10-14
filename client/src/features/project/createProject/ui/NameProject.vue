@@ -1,8 +1,17 @@
 <script setup lang="ts">
 import { SmallButton } from "@/shared/ui";
 import { useCreateProjectStore } from "../model/store";
+import { ref } from "vue";
 
 const createProjectStore = useCreateProjectStore();
+
+const isLoading = ref(false);
+
+const handleSubmit = async () => {
+    isLoading.value = true;
+    await createProjectStore.create();
+    isLoading.value = false;
+};
 </script>
 
 <template>
@@ -28,7 +37,8 @@ const createProjectStore = useCreateProjectStore();
 
         <div class="flex items-end">
             <SmallButton
-                @click="createProjectStore.create"
+                :disabled="isLoading"
+                @click="handleSubmit"
                 color="purple"
                 class="h-10"
             >
