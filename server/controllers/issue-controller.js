@@ -4,6 +4,7 @@ const issueService = new IssueService();
 module.exports = class IssueController {
     async addIssue(req, res, next) {
         try {
+            console.log("creating issue");
             const { projectId, title, culprit, level, type, message } =
                 req.body;
             await issueService.addIssue(
