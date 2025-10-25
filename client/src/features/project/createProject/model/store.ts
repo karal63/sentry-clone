@@ -1,12 +1,10 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import type { CreateProject, Platform } from "@/entities/project";
+import type { CreateProject, Platform, Project } from "@/entities/project";
 import { apiCreateProject, useProjectStore } from "@/entities/project";
-import { useRouter } from "vue-router";
 
 export const useCreateProjectStore = defineStore("createProject", () => {
     const projectStore = useProjectStore();
-    const router = useRouter();
 
     const project = ref<CreateProject>({
         platform: "",
@@ -18,14 +16,14 @@ export const useCreateProjectStore = defineStore("createProject", () => {
         project.value.platform = platform;
     };
 
-    const create = async () => {
+    const create = async (): Promise<Project | null> => {
         try {
             const newProject = await apiCreateProject(project.value);
             projectStore.projects.push(newProject);
-            router.push(`/projects/${newProject.name}/getting-started`);
-            router.push(`/projects/vue-project/getting-started`);
+            return newProject;
         } catch (error) {
             console.log(error);
+            return null;
         }
     };
 
