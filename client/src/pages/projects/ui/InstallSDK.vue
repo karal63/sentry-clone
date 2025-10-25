@@ -13,7 +13,7 @@
             </div>
             <code class="">
                 <span class="text-blue-400">npm install</span> --save
-                @sentry/vue
+                sentry-clone-sdk
             </code>
         </div>
     </div>

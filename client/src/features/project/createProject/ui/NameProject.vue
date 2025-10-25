@@ -2,14 +2,17 @@
 import { SmallButton } from "@/shared/ui";
 import { useCreateProjectStore } from "../model/store";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 const createProjectStore = useCreateProjectStore();
+const router = useRouter();
 
 const isLoading = ref(false);
 
 const handleSubmit = async () => {
     isLoading.value = true;
-    await createProjectStore.create();
+    const newProject = await createProjectStore.create();
+    router.push(`/projects/${newProject?.name}/getting-started`);
     isLoading.value = false;
 };
 </script>
