@@ -12,7 +12,6 @@ onMounted(async () => {
         !projectStore.currentProject &&
         localStorage.getItem("currentProject")
     ) {
-        console.log("API call | issues");
         projectStore.setCurrentProject(
             JSON.parse(localStorage.getItem("currentProject")!)
         );

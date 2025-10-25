@@ -13,7 +13,7 @@ export const useAuthStore = defineStore("auth", () => {
     };
 
     const checkAuth = async () => {
-        const response = await axiosInstance.post(
+        const response = await axiosInstance.get(
             `${import.meta.env.VITE_API_URL}/refresh`
         );
         if (response.status === 401) {

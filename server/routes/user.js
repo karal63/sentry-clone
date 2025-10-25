@@ -21,6 +21,6 @@ router.post(
 
 router.get("/logout", (req, res, next) => auth.logout(req, res, next));
 
-router.post("/refresh", (req, res, next) => auth.refresh(req, res, next));
+router.get("/refresh", (req, res, next) => auth.refresh(req, res, next));
 
 module.exports = router;
