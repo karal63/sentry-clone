@@ -6,8 +6,7 @@ import LandingPage from "@/pages/landing/LandingPage.vue";
 import { DashboardPage } from "@/pages/dashboard";
 import { IssuesPage } from "@/pages/issues";
 import ProtectedLayout from "../layout/ProtectedLayout.vue";
-import { CreateProjectPage, ProjectsPage } from "@/pages/projects";
-import ProjectConfigPage from "@/pages/projects/ProjectConfigPage.vue";
+import { ProjectsPage, ProjectConfigPage } from "@/pages/projects";
 
 export const routes: RouteRecordRaw[] = [
     {
@@ -48,7 +47,8 @@ export const routes: RouteRecordRaw[] = [
             },
             {
                 path: "/projects/new",
-                component: CreateProjectPage,
+                component: () =>
+                    import("@/pages/projects/CreateProjectPage.vue"),
             },
             {
                 path: "/projects/:name/getting-started",
@@ -57,3 +57,5 @@ export const routes: RouteRecordRaw[] = [
         ],
     },
 ];
+
+// try to lazy-load other pages, like config
