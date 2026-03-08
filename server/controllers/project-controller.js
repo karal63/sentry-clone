@@ -16,6 +16,7 @@ class ProjectController {
     async createProject(req, res, next) {
         try {
             const { platform, notifyViaEmail, name } = req.body;
+
             const id = uuidv4();
             const newProject = await projectService.create(
                 id,
