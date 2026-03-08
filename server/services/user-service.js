@@ -34,6 +34,9 @@ class UserService {
         }
 
         const user = result.rows[0];
+        console.log(user.password_hash);
+        console.log(await bcrypt.compare(password, user.password_hash));
+
         const isPasswordValid = await bcrypt.compare(
             password,
             user.password_hash
@@ -53,6 +56,8 @@ class UserService {
             readyUser.email,
             readyUser.name
         );
+
+        console.log(tokens);
 
         return {
             tokens,
