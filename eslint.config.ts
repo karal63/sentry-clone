@@ -1,6 +1,6 @@
 // eslint.config.ts
 
-import js from "@eslint/js";
+import tseslint from "typescript-eslint";
 import vue from "eslint-plugin-vue";
 import vueParser from "vue-eslint-parser";
 import tsParser from "@typescript-eslint/parser";
@@ -34,7 +34,7 @@ export default [
                 sourceType: "module",
             },
         },
-        ...js.configs.recommended,
+        ...tseslint.configs.recommended,
 
         plugins: {
             "@typescript-eslint": tsPlugin,
