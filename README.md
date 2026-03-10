@@ -44,6 +44,14 @@ Backend
 
 ---
 
+### Database Schema
+
+![Database ERD](docs/screenshots/database-schema.png)
+
+In addition, you can find some of the already prepared queries [here](./server/queries.sql)
+
+---
+
 ## How It Works
 
 1. An application sends error events to the backend API.
