@@ -1,3 +1,4 @@
+-- Create users table
 create table users (
     id varchar(36) primary key,
     username varchar(255) not null unique,
@@ -6,6 +7,7 @@ create table users (
     created_at timestamp default current_timestamp
 );
 
+-- Create projects table
 create table projects (
     id varchar(36) primary key,
     name varchar(255) not null,
@@ -15,18 +17,7 @@ create table projects (
     foreign key (owner_id) references users(id)
 );
 
-INSERT INTO users (id, username, email, password_hash) VALUES ('0', 'root', 'kuzmichleva1@gmail.com', '1234');  
-INSERT INTO projects (id, name, platform, owner_id) VALUES ('0', 'Test Project', 'VUE', '0');  
-
--- fix primary key violation
-
-DELETE FROM users
-WHERE id = '1a15c12b-3b63-4b9c-8b52-eee3db77f569'
-  OR id = '0feb5eb5-ce50-47ae-97b5-ac98e4360d2a'
-  OR id = 'aae0f3b4-adbf-432a-aecd-4ae4f9192372';
-
---   created protected route and middleware for verifying token
-
+-- Create issues table
 CREATE TABLE issues (
     id VARCHAR(36) PRIMARY KEY,
     project_id VARCHAR(36) NOT NULL REFERENCES projects(id) ON DELETE CASCADE,
@@ -39,13 +30,14 @@ CREATE TABLE issues (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+INSERT INTO users (id, username, email, password_hash) VALUES ('0', 'root', 'kuzmichleva1@gmail.com', '1234');  
+INSERT INTO projects (id, name, platform, owner_id) VALUES ('0', 'Test Project', 'VUE', '0');  
 
-    -- first_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    -- last_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    -- occurrences INTEGER DEFAULT 1,
-    -- assigned_to BIGINT REFERENCES users(id),
-    -- updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+DELETE FROM users
+WHERE id = '1a15c12b-3b63-4b9c-8b52-eee3db77f569'
+  OR id = '0feb5eb5-ce50-47ae-97b5-ac98e4360d2a'
+  OR id = 'aae0f3b4-adbf-432a-aecd-4ae4f9192372';
 
-    INSERT INTO issues (id, project_id, title, culprit, level, type, message) VALUES (
-        'testid2', '1', 'Example name (optional)', 'addPhoto(src/components/photo/PhotoForm)', 'error', 'TypeError', 'Failed to execute "readAsDataURL" on "FileReader": parameter 1 is not of type "Blob".'
-    );
+INSERT INTO issues (id, project_id, title, culprit, level, type, message) VALUES (
+    'testid2', '1', 'Example name (optional)', 'addPhoto(src/components/photo/PhotoForm)', 'error', 'TypeError', 'Failed to execute "readAsDataURL" on "FileReader": parameter 1 is not of type "Blob".'
+);
