@@ -25,6 +25,20 @@ It collects application errors, stores them, and displays them in a simple dashb
 
 ---
 
+## How It Works
+
+1. An application sends error events to the backend API.
+
+2. The backend stores these events.
+
+3. The dashboard fetches and displays the errors in a feed view.
+
+### Basic flow:
+
+`Application -> Error API -> Storage -> Dashboard Feed`
+
+---
+
 ## Technology stack
 
 Frontend
@@ -49,20 +63,6 @@ Backend
 ![Database ERD](docs/screenshots/database-schema.png)
 
 In addition, you can find some of the already prepared queries [here](./server/queries.sql)
-
----
-
-## How It Works
-
-1. An application sends error events to the backend API.
-
-2. The backend stores these events.
-
-3. The dashboard fetches and displays the errors in a feed view.
-
-### Basic flow:
-
-`Application -> Error API -> Storage -> Dashboard Feed`
 
 ---
 

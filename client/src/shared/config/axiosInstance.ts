@@ -15,14 +15,12 @@ axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
 });
 
 axiosInstance.interceptors.response.use(
-    (config: AxiosResponse) => {
-        return config;
-    },
+    (response: AxiosResponse) => response,
     async (error) => {
         const originalRequest = error.config;
         if (
-            error.response?.status == 401 &&
-            !error.config._isRetry &&
+            error.response?.status === 401 &&
+            !originalRequest._retry &&
             !originalRequest.url.includes("/refresh")
         ) {
             originalRequest._retry = true;
@@ -34,6 +32,7 @@ axiosInstance.interceptors.response.use(
                 return axiosInstance.request(originalRequest);
             } catch (err) {
                 console.log(err);
+                return Promise.reject(err);
             }
         }
         throw error;

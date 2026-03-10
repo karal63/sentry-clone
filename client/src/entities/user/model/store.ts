@@ -13,17 +13,16 @@ export const useAuthStore = defineStore("auth", () => {
     };
 
     const checkAuth = async () => {
-        const response = await axiosInstance.get(
-            `${import.meta.env.VITE_API_URL}/refresh`
-        );
-        if (response.status === 401) {
-            return console.log("User is not authenticated");
+        try {
+            const response = await axiosInstance.get(
+                `${import.meta.env.VITE_API_URL}/refresh`
+            );
+
+            localStorage.setItem("accessToken", response.data.accessToken);
+            setUser(response.data.user, true);
+        } catch (error) {
+            console.log(error);
         }
-
-        if (!response.data.user) return;
-
-        localStorage.setItem("accessToken", response.data.accessToken);
-        setUser(response.data.user, true);
     };
 
     return { setUser, user, isAuthenticated, checkAuth };

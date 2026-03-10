@@ -1,5 +1,3 @@
-// eslint.config.ts
-
 import tseslint from "typescript-eslint";
 import vue from "eslint-plugin-vue";
 import vueParser from "vue-eslint-parser";
@@ -17,10 +15,8 @@ export default [
         ],
     },
 
-    // js.configs.recommended,
-
-    // Vue recommended flat config
     ...vue.configs["flat/recommended"],
+    ...tseslint.configs.recommended,
 
     {
         files: ["client/**/*.{ts,vue}"],
@@ -28,14 +24,12 @@ export default [
             parser: vueParser,
             parserOptions: {
                 parser: tsParser,
-                project: "./client/tsconfig.json",
+                project: "./client/tsconfig.app.json",
                 extraFileExtensions: [".vue"],
                 ecmaVersion: 2021,
                 sourceType: "module",
             },
         },
-        ...tseslint.configs.recommended,
-
         plugins: {
             "@typescript-eslint": tsPlugin,
         },
@@ -43,7 +37,6 @@ export default [
 
     {
         files: ["server/**/*.js"],
-        // ...js.configs.recommended,
     },
 
     prettier,
